@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESQUADRALUM | Tabela de Esquadrinhas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">◉</div>
+        <div><strong>ESQUADRALUM</strong><small>SOLUÇÕES EM ESQUADRIAS</small></div>
+      </div>
+      <nav>
+        <a href="#" class="nav-item">⌂ <span>Início</span></a>
+        <a href="#" class="nav-item active">▤ <span>Tabelas</span></a>
+        <a href="#" class="nav-item">◷ <span>Produção</span></a>
+        <a href="#" class="nav-item">▧ <span>Relatórios</span></a>
+        <a href="#" class="nav-item">⚙ <span>Configurações</span></a>
+      </nav>
+      <div class="sidebar-bottom">ESQUADRALUM<br><small>Gestão de pedidos</small></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="brand mobile-brand">
+          <div class="brand-mark">◉</div>
+          <div><strong>ESQUADRALUM</strong><small>SOLUÇÕES EM ESQUADRIAS</small></div>
+        </div>
+        <div class="top-actions"><button class="icon-btn" title="Pesquisar">⌕</button><button class="avatar" title="Perfil">♟</button></div>
+      </header>
+
+      <section class="page-heading">
+        <div>
+          <h1>Tabela de Esquadrinhas</h1>
+          <p>Gerencie e acompanhe todos os pedidos de produção.</p>
+        </div>
+        <button class="primary-btn" id="openModal">＋ Novo pedido</button>
+      </section>
+
+      <section class="toolbar">
+        <input id="searchInput" type="search" placeholder="Buscar cliente, código...">
+        <select id="typeFilter" aria-label="Filtrar por tipo">
+          <option value="">Tipo: Todos</option>
+          <option>Janela</option><option>Porta</option><option>Basculante</option><option>Box</option>
+        </select>
+        <select id="statusFilter" aria-label="Filtrar por status">
+          <option value="">Status: Todos</option>
+          <option>Em produção</option><option>Concluído</option><option>Pendente</option>
+        </select>
+        <button class="secondary-btn" id="clearFilters">↻ Limpar filtros</button>
+      </section>
+
+      <section class="stats">
+        <div class="stat-card"><span>Total de pedidos</span><strong id="totalCount">0</strong></div>
+        <div class="stat-card"><span>Em produção</span><strong id="productionCount">0</strong></div>
+        <div class="stat-card"><span>Concluídos</span><strong id="doneCount">0</strong></div>
+        <div class="stat-card"><span>Pendentes</span><strong id="pendingCount">0</strong></div>
+      </section>
+
+      <section class="table-card">
+        <div class="table-header"><h2>Pedidos cadastrados</h2><span id="resultCount">0 registros</span></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Cód.</th><th>Cliente</th><th>Tipo</th><th>Medidas (L × A)</th><th>Quantidade</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+        </div>
+        <div id="emptyState" class="empty-state" hidden>Nenhum pedido encontrado. Cadastre um novo pedido para começar.</div>
+      </section>
+
+      <footer>ESQUADRALUM <span>Suporte Técnico e Contato</span></footer>
+    </main>
+  </div>
+
+  <dialog id="orderDialog">
+    <form id="orderForm">
+      <div class="modal-heading"><div><h2 id="modalTitle">Novo pedido</h2><p>Preencha os dados da esquadria.</p></div><button type="button" class="close-btn" id="closeModal">×</button></div>
+      <input type="hidden" id="orderId">
+      <label>Nome do cliente<input id="client" required maxlength="70" placeholder="Ex.: João Silva"></label>
+      <div class="form-grid">
+        <label>Tipo<select id="type" required><option>Janela</option><option>Porta</option><option>Basculante</option><option>Box</option></select></label>
+        <label>Quantidade<input id="quantity" type="number" min="1" max="999" value="1" required></label>
+        <label>Medida da largura (mm)<input id="width" type="number" min="1" required placeholder="1200"></label>
+        <label>Medida da altura (mm)<input id="height" type="number" min="1" required placeholder="1000"></label>
+      </div>
+      <label>Status<select id="status"><option>Em produção</option><option>Concluído</option><option>Pendente</option></select></label>
+      <div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancelar</button><button class="primary-btn" type="submit">Salvar pedido</button></div>
+    </form>
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>
